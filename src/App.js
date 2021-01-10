@@ -30,7 +30,7 @@ export default () => {
       params: {
         part: "snippet",
         maxResults: 5,
-        key: 'personalKey',
+        key: process.env.REACT_APP_YOUTUBE_KEY,
         q: searchTerm,
       }
     });
