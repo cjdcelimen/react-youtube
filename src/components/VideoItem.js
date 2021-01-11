@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Paper, Typography } from "@material-ui/core";
 
-export default ({ video, onVideoSelect }) => {
+const VideoItem = ({ video, onVideoSelect }) => {
   return (
     <Grid item xs={12}>
       <Paper style={{ display: "flex", alignItems: "center", cursor: "pointer" }} onClick={() => onVideoSelect(video)} >
@@ -11,5 +11,7 @@ export default ({ video, onVideoSelect }) => {
         </Typography>
       </Paper>
     </Grid>
-  );
+  )
 }
+
+export default VideoItem

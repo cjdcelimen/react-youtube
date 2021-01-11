@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Paper, TextField } from "@material-ui/core";
 
-export default ({ onSubmit }) => {
+const SearchBar = ({ onSubmit }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const handleChange = (event) => setSearchTerm(event.target.value);
   const onKeyPress = (event) => {
@@ -9,7 +9,6 @@ export default ({ onSubmit }) => {
       onSubmit(searchTerm);
     }
   }
-
   return (
     <Paper elevation={6} style={{ padding: "25px" }}>
       <TextField
@@ -20,5 +19,7 @@ export default ({ onSubmit }) => {
         onKeyPress={onKeyPress}
       />
     </Paper>
-  );
+  )
 }
+
+export default SearchBar

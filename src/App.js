@@ -3,9 +3,23 @@ import { Grid } from "@material-ui/core";
 import { SearchBar, VideoList, VideoDetail } from "./components";
 import Youtube from "./api/Youtube";
 
-export default () => {
+const App = () => {
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
+
+  async function handleSubmit(searchTerm) {
+    const { data: { items: videos } } = await Youtube.get("search", {
+      params: {
+        part: "snippet",
+        maxResults: 5,
+        key: process.env.REACT_APP_YOUTUBE_KEY,
+        q: searchTerm,
+      }
+    });
+
+    setVideos(videos);
+    setSelectedVideo(videos[0]);
+  }
 
   return (
     <Grid style={{ justifyContent: "center" }} container spacing={10}>
@@ -23,19 +37,7 @@ export default () => {
         </Grid>
       </Grid>
     </Grid>
-  );
-
-  async function handleSubmit(searchTerm) {
-    const { data: { items: videos } } = await Youtube.get("search", {
-      params: {
-        part: "snippet",
-        maxResults: 5,
-        key: process.env.REACT_APP_YOUTUBE_KEY,
-        q: searchTerm,
-      }
-    });
-
-    setVideos(videos);
-    setSelectedVideo(videos[0]);
-  }
+  )
 }
+
+export default App
